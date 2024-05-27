@@ -22,7 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker-compose up build
+      run: docker-compose build
 
     - name: Tag the Docker image
       run: docker tag nyayak-server:latest studiousgeek/nyayak-server:latest
