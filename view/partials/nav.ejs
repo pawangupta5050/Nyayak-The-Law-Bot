@@ -1,0 +1,51 @@
+<div class="bg-dark">
+  <nav class="navbar navbar-expand-lg container" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="font-size: 30px; font-family: 'Noto Serif', serif; font-weight: 400 ;"><img src="/images/india.png" alt="Nyayak" width="40px" height="40px" style="margin-right: 10px;" /><span>NYAYAK</span></a>
+      <form class="d-flex" role="search">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if(locals.user) {%>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">New Chat <i class="fa-solid fa-pen-to-square"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <%= user.fullName %>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/user/logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+              </ul>
+            </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/signup">Create an Account!</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/signin">Sign In</a>
+              </li>
+              <% } %>
+        </ul>
+      </div>
+      </form>
+      
+    </div>
+  </nav>
+
+</div>
+
+  <% if(locals.error) { %>
+    <div class="container mt-4">
+
+      <div class="alert alert-danger" role="alert">
+        <%= locals.error %>
+      </div>
+
+    </div>
+    <% } %>
+</div>

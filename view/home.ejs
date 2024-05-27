@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+
+    <%- include('./partials/head') %>
+        <style>
+            .question-list::-webkit-scrollbar {
+                display: none;
+            }
+
+            .about::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+        <% if(locals.user) {%>
+            <div class="container mt-4 d-flex">
+                <div class="row row-cols-1 row-cols-md-2 g-4" style="width: 100%;">
+                    <div class="col" style="width: 30%; height: 80vh; min-height: 80vh;">
+                        <div class="card" style="height: 80vh; ">
+                            <div class="card-body" style="height: 7vh;">
+                                <h5 class="card-title">Recent Questions</h5>
+                            </div>
+                            <div class="card-body question-list" style="overflow: auto; height: 73vh;">
+                                <% if(locals.chats) {%>
+                                    <% chats.forEach(chat=> { %>
+                                        <div class="card mb-2 border-black chat-data">
+                                            <div class="card-body chats-list btn btn-outline-dark question"
+                                                id="<%= chat._id %>"
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                <%= chat.question %>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="width: 70%;">
+                        <div class="card" style="height: 80vh;">
+                            <div class="card-body">
+                                <div class="card"
+                                    style="height: 90%; max-height: 90%; min-height: 90%; overflow: hidden;">
+
+                                    <div class="card-body answer-scroll"
+                                        style="height: 400px; max-height: 400px; overflow: auto; -ms-overflow-style: none; scrollbar-width: none;">
+
+                                        <div style="white-space: pre-line; word-break: break-word; margin-bottom: 0; padding-bottom: 0; "
+                                            class="card-text answer ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if(locals.user) { %>
+                                    <form method="POST" action="/chat">
+                                        <div class="input-group mt-3">
+                                            <input type="text" name="question" class="form-control rounded"
+                                                placeholder="Enter your question....">
+                                            <button class="input-group-text ms-2 rounded bg-dark text-white"><i
+                                                    class="fa-regular fa-paper-plane"></i></button>
+                                        </div>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } else { %>
+
+                    <div class="container mt-4 mb-4 about" style="overflow: auto">
+                        <%- include('./partials/about') %>
+                    </div>
+
+                    <% } %>
+                        <%- include('./partials/scripts') %>
+                            <script>
+                                var questionList = document.querySelector('.question-list')
+
+                                const currentURL = window.location.href;
+                                const domain = new URL(currentURL).origin;
+                                console.log(domain);
+                                if (questionList) {
+                                    questionList.addEventListener('click', (e) => {
+
+                                        if (e.target.classList.contains("question")) {
+                                            var link = `${domain}/chat/${e.target.id}`;
+                                            window.location.href = link;
+                                        }
+                                    });
+                                }
+
+                            </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Sign Up</title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+
+        <section class="vh-80 mt-5">
+            <div class="container-fluid h-custom">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="/images/signup.png"
+                            class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <form method="POST" action="/user/signup">
+                            <div
+                                class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                <p class="lead fw-normal mb-0 me-3">Sign up with</p>
+                                <button type="button" data-mdb-button-init data-mdb-ripple-init
+                                    class="btn btn-dark btn-floating mx-1">
+                                    <i class="fa-brands fa-google"></i>
+                                </button>
+                            </div>
+
+                            <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                            </div>
+
+                            <!-- Name input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" class="form-control form-control-lg"
+                                    placeholder="Enter your full name" id="fullName" aria-describedby="fullName" name="fullName" />
+                                <label class="form-label" for="form3Example3">Fullname</label>
+                            </div>
+
+                            <!-- Email input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="email" class="form-control form-control-lg"
+                                    placeholder="Enter a valid email address" id="email" aria-describedby="email" name="email" />
+                                <label class="form-label" for="form3Example3">Email address</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div data-mdb-input-init class="form-outline mb-3">
+                                <input type="password" class="form-control form-control-lg"
+                                    placeholder="Enter password" id="password" name="password" />
+                                <label class="form-label" for="form3Example4">Password</label>
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                                    class="btn btn-dark btn-lg"
+                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/user/signin"
+                                        class="link-danger">Login</a></p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>
