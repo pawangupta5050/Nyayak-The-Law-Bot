@@ -5,7 +5,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.SECRET_KEY;
 
-const htmlFilePath = path.join(__dirname, '../email.html');
+const htmlFilePath = path.join(__dirname, '../public/emails/email.html');
 let htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
 
 const transporter = nodemailer.createTransport({
@@ -66,7 +66,6 @@ const handleValidateUser = async (req, res) => {
     }
 }
 
-
 const handleVerifyUser = (req, res) => {
     try {
         const token = req.cookies.otpToken;
@@ -107,30 +106,30 @@ const handleVerifyUser = (req, res) => {
     }
 }
 
-const handleSignupUser = async (req, res) => {
-    try {
-        const { fullName, email, password } = req.body;
+// const handleSignupUser = async (req, res) => {
+//     try {
+//         const { fullName, email, password } = req.body;
 
-        const existingUser = await User.findOne({ email: email });
+//         const existingUser = await User.findOne({ email: email });
 
-        if (existingUser) {
-            return res.render('signup', {
-                error: `The user with email id ${email} already exists`,
-            });
-        } else {
-            await User.create({
-                fullName,
-                email,
-                password,
-            });
-            res.clearCookie('otp')
-            return res.redirect('/');
-        }
-    } catch (err) {
-        console.error('Error handling signup:', err);
-        return res.status(500).send('Internal Server Error');
-    }
-};
+//         if (existingUser) {
+//             return res.render('signup', {
+//                 error: `The user with email id ${email} already exists`,
+//             });
+//         } else {
+//             await User.create({
+//                 fullName,
+//                 email,
+//                 password,
+//             });
+//             res.clearCookie('otp')
+//             return res.redirect('/');
+//         }
+//     } catch (err) {
+//         console.error('Error handling signup:', err);
+//         return res.status(500).send('Internal Server Error');
+//     }
+// };
 
 const handleSigninUser = async (req, res) => {
     const { email, password } = req.body;
@@ -150,7 +149,7 @@ const handleLogoutUser = (req, res) => {
 }
 
 module.exports = {
-    handleSignupUser,
+    // handleSignupUser,
     handleSigninUser,
     handleLogoutUser,
     handleValidateUser,

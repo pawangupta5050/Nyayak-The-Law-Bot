@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { handleSignupUser, handleSigninUser, handleLogoutUser, handleValidateUser, handleVerifyUser } = require('../controller/user');
+const { handleSigninUser, handleLogoutUser, handleValidateUser, handleVerifyUser } = require('../controller/user');
 const router = Router();
 
 const { restrictTo } = require('../middleware/auth.js');
