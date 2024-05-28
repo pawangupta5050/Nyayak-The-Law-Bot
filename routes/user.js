@@ -1,6 +1,8 @@
 const { Router } = require('express');
-const { handleSignupUser, handleSigninUser, handleLogoutUser } = require('../controller/user');
+const { handleSignupUser, handleSigninUser, handleLogoutUser, handleValidateUser, handleVerifyUser } = require('../controller/user');
 const router = Router();
+
+const { restrictTo } = require('../middleware/auth.js');
 
 router.get('/signin', (req, res) => {
     return res.render('signin')
@@ -12,7 +14,9 @@ router.get('/signup', (req, res) => {
 
 router.get('/logout', handleLogoutUser);
 
-router.post('/signup', handleSignupUser);
+router.post('/signup', handleValidateUser);
+
+router.post('/verify', handleVerifyUser);
 
 router.post('/signin', handleSigninUser);
 
